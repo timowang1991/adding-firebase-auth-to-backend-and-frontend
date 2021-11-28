@@ -12,7 +12,7 @@ class Middleware {
         const token = idToken.split(' ')[1];
         try {
             const decodeValue = await admin.auth().verifyIdToken(token);
-            console.log('----- decodeValue', decodeValue);
+            // console.log('----- decodeValue', decodeValue);
             if (decodeValue) {
                 req.user = decodeValue;
                 return next();

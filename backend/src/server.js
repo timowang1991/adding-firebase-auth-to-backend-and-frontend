@@ -10,7 +10,7 @@ app.use(cors());
 app.use(middleware.decodeToken);
 
 app.get('/api/todos', (req, res) => {
-    console.log('----- req.user', req.user);
+    console.log('----- req.user', JSON.stringify(req.user, null, 4));
 
     return res.json({
         todos: [
