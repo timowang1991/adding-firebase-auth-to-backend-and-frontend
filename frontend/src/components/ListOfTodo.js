@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function ListOfTodo ({ token }) {
+    const [todos, setTodos] = useState([]);
+
     const fetchData = async (token) => {
         const res = await axios.get('http://localhost:3001/api/todos', {
             headers: {
@@ -9,6 +11,7 @@ export default function ListOfTodo ({ token }) {
             }
         });
         console.log(res.data);
+        setTodos(res.data.todos);
     }
 
     useEffect(() => {
@@ -17,9 +20,16 @@ export default function ListOfTodo ({ token }) {
         }
     }, [token]);
 
+    console.log('----- todos', todos);
+
     return (
         <div>
             <h1>List of todo</h1>
+            <ul>
+            {
+                todos.map((todo) => <li>{todo.title}</li>)
+            }
+            </ul>
         </div>
     );
 }

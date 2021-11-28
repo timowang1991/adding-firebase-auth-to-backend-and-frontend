@@ -1,5 +1,11 @@
 import './App.css';
-import { getAuth, signInWithPopup, onAuthStateChanged, getIdToken, GoogleAuthProvider } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithPopup,
+  onAuthStateChanged,
+  getIdToken,
+  GoogleAuthProvider
+} from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import ListOfTodo from './components/ListOfTodo';
 
@@ -39,6 +45,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Google Auth</h1>
       { gAuth ?
         <ListOfTodo token={token} />
         :
