@@ -27,7 +27,7 @@ export default function ListOfTodo ({ token }) {
             <h1>List of todo</h1>
             <ul>
             {
-                todos.map((todo) => <li>{todo.title}</li>)
+                todos.map((todo, idx) => <li key={`${idx}-${todo.title}`}>{todo.title}</li>)
             }
             </ul>
         </div>
