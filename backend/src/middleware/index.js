@@ -3,6 +3,7 @@ const admin = require('../config/firebase-config');
 class Middleware {
     async decodeToken(req, res, next) {
         const idToken = req.headers.authorization;
+        console.log('idToken', idToken);
         if (!idToken) {
             return res.status(401).json({
                 message: 'no auth token'
