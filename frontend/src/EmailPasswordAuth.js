@@ -3,7 +3,8 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged,
-    signOut
+    signOut,
+    sendEmailVerification,
 } from 'firebase/auth';
 
 import { useEffect, useState } from 'react';
@@ -14,10 +15,13 @@ export default function EmailPasswordAuth() {
     const [eAuth, setEAuth] = useState();
 
     useEffect(() => {
-        onAuthStateChanged(auth, (result) => {
+        onAuthStateChanged(auth, async (result) => {
             console.log('ep onAuthStateChanged---', result);
             if (result) {
                 setEAuth(true);
+                if (!result.emailVerified) {
+                    await sendEmailVerification(result);
+                }
             } else {
                 setEAuth(false);
             }
